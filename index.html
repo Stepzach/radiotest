@@ -4,7 +4,7 @@
    <script type="text/javascript" src="2.js"></script>
    <script type="text/javascript" src="3.js"></script>
    <script type="text/javascript" src="4.js"></script>
-   <script type="text/javascript" src="5.js"></script>
+
   <div class="row"><div class="col-xs-2 col-sm-1">
     <div class="display-center">
       <div class="play-radio display-center align-items-center">
@@ -39,6 +39,83 @@
             Search
           </a> <a href="/users/prompt" class="button-large filled uppercase text-center">
               Join Family
-            </a></div></div> <div class="col-xs-2 col-sm-1"><div class="menu-button display-center">
+            </a></div></div> <div class="col-xs-2 col-sm-1" clickable-div><div class="menu-button display-center">
               <img src="Hamburger_icon.svg.png" alt="Open Menu" class="header-icon"></div>
             </div></div> <div id="radio-player"><audio src="https://worldwidefm.out.airtime.pro/worldwidefm_b"></audio></div></header>
+
+
+
+<div class="pop-menu animated-background open" style="display: none;">
+  <nav class="center-xs">
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/search" class="">
+        <p>Search</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="https://worldwidefm.net/editorial/studio-monkey-shoulder" class="nav-entry">
+        <p>Studio Monkey Shoulder</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/episode" class="">
+        <p>Latest Episodes</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/collection" class="">
+        <p>Collections</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/editorials" class="">
+        <p>Editorials</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/archive" class="">
+        <p>Archive</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/about" class="">
+        <p>About</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="/schedule" class="">
+        <p>Schedule</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1 hide-desktop">
+      <a href="/chat" class="">
+        <p>Chat</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
+      <a href="https://worldwidefm.ochre.store/" target="_blank" class="nav-entry">
+        <p>Shop</p>
+      </a>
+    </div>
+    <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1 hide-desktop">
+      <a href="/users/prompt" class="">
+        Account
+      </a>
+    </div>
+  </nav>
+</div>
+
+<style>.pop-menu {
+  display: none;
+  /* Add any other styles here */
+}
+</style>
+
+<script>$(document).ready(function() {
+  // When the element with class 'col-xs-2 col-sm-1' is clicked
+  $('.col-xs-2.col-sm-1').click(function() {
+    // Toggle the display of the 'pop-menu' (either show or hide it)
+    $('.pop-menu').toggle();
+  });
+});
+</script>
