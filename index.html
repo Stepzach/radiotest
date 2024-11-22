@@ -1,9 +1,5 @@
 <header class="site-header container-fluid">
   <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="1.js"></script>
-   <script type="text/javascript" src="2.js"></script>
-   <script type="text/javascript" src="3.js"></script>
-   <script type="text/javascript" src="4.js"></script>
 
   <div class="row"><div class="col-xs-2 col-sm-1">
     <div class="display-center">
@@ -45,7 +41,7 @@
 
 
 
-<div class="pop-menu animated-background open" style="display: none;">
+<div class="pop-menu">
   <nav class="center-xs">
     <div class="menu-link col-xs-12 col-sm-10 col-sm-offset-1">
       <a href="/search" class="">
@@ -111,11 +107,19 @@
 }
 </style>
 
-<script>$(document).ready(function() {
+<script>
+  $(document).ready(function() {
   // When the element with class 'col-xs-2 col-sm-1' is clicked
   $('.col-xs-2.col-sm-1').click(function() {
     // Toggle the display of the 'pop-menu' (either show or hide it)
     $('.pop-menu').toggle();
   });
 });
+  $(document).ready(function() {
+  $('.col-xs-2.col-sm-1').click(function() {
+    // Fade in/out the pop-menu with smooth transition
+    $('.pop-menu').fadeToggle();
+  });
+});
+
 </script>
