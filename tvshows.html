@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Show Embed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #showForm {
+      max-width: 400px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #output {
+      margin-top: 20px;
+      text-align: center;
+    }
+    iframe {
+      margin-top: 20px;
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    #suggestions {
+        border: 1px solid #ccc;
+        border-top: none;
+        max-height: 150px;
+        overflow-y: auto;
+        margin-top: -5px;
+    }
+    .suggestion {
+        padding: 5px;
+        cursor: pointer;
+    }
+    .suggestion:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>TV Show Embed</h1>
+  <form id="showForm">
+    <label for="showInput">Enter a show name:</label>
+    <input type="text" id="showInput" placeholder="e.g., Breaking Bad" />
+     <div id="suggestions"></div>
+    <button type="submit">Generate Embed</button>
+  </form>
+  <div id="output"></div>
+  <script>
+const showList = {
+  "Breaking Bad": "tt0903747",
+  "The Wire": "tt0306414",
+  "Mad Men": "tt0804503",
+  "Game of Thrones": "tt0944947",
+  "The Sopranos": "tt0141842",
+  "The Office": "tt0386676",
+  "The West Wing": "tt0200276",
+  "Stranger Things": "tt4574334",
+  "Fleabag": "tt5687612",
+  "Better Call Saul": "tt3032476",
+  "The Crown": "tt4786824",
+  "Succession": "tt7660850",
+  "Sherlock": "tt1475582",
+  "House": "tt0412142",
+  "True Detective": "tt2356777",
+  "Westworld": "tt0475784",
+  "Dexter": "tt0773262",
+  "The Mandalorian": "tt8111088",
+  "Black Mirror": "tt2085059",
+  "Parks and Recreation": "tt1266020",
+  "BoJack Horseman": "tt3398228",
+  "Ted Lasso": "tt10986410",
+  "Fargo": "tt2802850",
+  "The Boys": "tt1190634",
+  "Hannibal": "tt2243973",
+  "Homeland": "tt1796960",
+  "Watchmen": "tt7049682",
+  "The Americans": "tt2149175",
+  "Mindhunter": "tt5290382",
+  "Ozark": "tt5071412",
+  "The Good Place": "tt4955642",
+  "Archer": "tt1486217",
+  "GLOW": "tt5770786",
+  "The Walking Dead": "tt1520211",
+  "Euphoria": "tt8772296",
+  "Deadwood": "tt0348914",
+  "Community": "tt1439629",
+  "30 Rock": "tt0496424",
+  "Barry": "tt5348176",
+  "The Leftovers": "tt2699128",
+  "Schitt's Creek": "tt3526078",
+  "Big Little Lies": "tt3920596",
+  "Brooklyn Nine-Nine": "tt2467372",
+  "The Marvelous Mrs. Maisel": "tt5788792",
+  "Friday Night Lights": "tt0758745",
+  "Justified": "tt1489428",
+  "The Expanse": "tt3230854",
+  "Veep": "tt1759761"
+};
+
+function generateEmbedCode(showName) {
+  const imdbCode = showList[showName];
+  if (!imdbCode) {
+    console.error("Show not found.");
+    return "Show not found. Please try again.";
+  }
+
+  return `<iframe src="https://www.2embed.skin/embedtvfull/${imdbCode}" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen sandbox="allow-scripts allow-same-origin noallow-popups"></iframe>`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('#showForm');
+  const input = document.querySelector('#showInput');
+  const output = document.querySelector('#output');
+  const suggestionsDiv = document.querySelector('#suggestions');
+
+  function updateSuggestions(searchTerm) {
+    suggestionsDiv.innerHTML = '';
+    if (!searchTerm) return;
+
+    const filteredShows = Object.keys(showList).filter(show =>
+        show.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    filteredShows.forEach(show => {
+      const suggestionItem = document.createElement('div');
+      suggestionItem.textContent = show;
+      suggestionItem.classList.add('suggestion');
+      suggestionItem.addEventListener('click', () => {
+          input.value = show;
+          suggestionsDiv.innerHTML = ''; // Clear suggestions
+      });
+      suggestionsDiv.appendChild(suggestionItem);
+    });
+
+    if (filteredShows.length === 0) {
+      suggestionsDiv.innerHTML = '<div class="suggestion">No matches found</div>'
+    }
+  }
+
+
+  input.addEventListener('input', (e) => {
+    updateSuggestions(e.target.value);
+  });
+
+
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const showName = input.value.trim();
+    const embedCode = generateEmbedCode(showName);
+    output.innerHTML = embedCode;
+      suggestionsDiv.innerHTML = '';
+
+  });
+});
+
+</script>
+</body>
+</html>
